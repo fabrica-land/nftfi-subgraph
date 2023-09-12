@@ -1,0 +1,111 @@
+#scalar Bytes
+#scalar BigInt
+#directive @entity(immutable: Boolean) on OBJECT
+#directive @derivedFrom(field: String) on FIELD_DEFINITION
+
+enum LoanStatus {
+    ActiveOrDefault,
+    Liquidated,
+    Repaid,
+}
+
+type Loan @entity(immutable: false) {
+    id: Bytes!
+    loanId: BigInt!
+    loanStatus: LoanStatus!
+    borrower: Bytes!
+    lender: Bytes!
+    loanPrincipalAmount: BigInt!
+    maximumRepaymentAmount: BigInt!
+    nftCollateralId: BigInt!
+    loanERC20Denomination: Bytes!
+    loanDuration: BigInt!
+    loanInterestRateForDurationInBasisPoints: Int!
+    loanAdminFeeInBasisPoints: Int!
+    nftCollateralWrapper: Bytes!
+    loanStartTime: BigInt!
+    nftCollateralContract: Bytes!
+    revenueSharePartner: Bytes!
+    revenueShareInBasisPoints: Int!
+    referralFeeInBasisPoints: Int!
+    loanStartedEvent: LoanStartedEvent! @derivedFrom(field: "loan")
+    loanMaturityDate: BigInt
+    loanLiquidationDate: BigInt
+    loanLiquidatedEvent: LoanLiquidatedEvent @derivedFrom(field: "loan")
+    totalRenegotiationFeesPaid: BigInt!
+    totalRenegotiationAdminFeesPaid: BigInt!
+    loanRenegotiatedEvents: [LoanRenegotiatedEvent!] @derivedFrom(field: "loan")
+    amountPaidToLender: BigInt
+    adminFeePaid: BigInt
+    revenueSharePaid: BigInt
+}
+
+type LoanLiquidatedEvent @entity(immutable: true) {
+    id: Bytes!
+    loan: Loan!
+    borrower: Bytes!
+    lender: Bytes!
+    loanPrincipalAmount: BigInt!
+    nftCollateralId: BigInt!
+    loanMaturityDate: BigInt!
+    loanLiquidationDate: BigInt!
+    nftCollateralContract: Bytes!
+    blockNumber: BigInt!
+    blockTimestamp: BigInt!
+    transactionHash: Bytes!
+}
+
+type LoanRenegotiatedEvent @entity(immutable: true) {
+    id: Bytes!
+    loan: Loan!
+    borrower: Bytes!
+    lender: Bytes!
+    newLoanDuration: BigInt!
+    newMaximumRepaymentAmount: BigInt!
+    renegotiationFee: BigInt!
+    renegotiationAdminFee: BigInt!
+    blockNumber: BigInt!
+    blockTimestamp: BigInt!
+    transactionHash: Bytes!
+}
+
+type LoanRepaidEvent @entity(immutable: true) {
+    id: Bytes!
+    loan: Loan!
+    borrower: Bytes!
+    lender: Bytes!
+    loanPrincipalAmount: BigInt!
+    nftCollateralId: BigInt!
+    amountPaidToLender: BigInt!
+    adminFee: BigInt!
+    revenueShare: BigInt!
+    revenueSharePartner: Bytes!
+    nftCollateralContract: Bytes!
+    loanERC20Denomination: Bytes!
+    blockNumber: BigInt!
+    blockTimestamp: BigInt!
+    transactionHash: Bytes!
+}
+
+type LoanStartedEvent @entity(immutable: true) {
+    id: Bytes!
+    loan: Loan!
+    borrower: Bytes!
+    lender: Bytes!
+    loanPrincipalAmount: BigInt!
+    maximumRepaymentAmount: BigInt!
+    nftCollateralId: BigInt!
+    loanERC20Denomination: Bytes!
+    loanDuration: BigInt!
+    loanInterestRateForDurationInBasisPoints: Int!
+    loanAdminFeeInBasisPoints: Int!
+    nftCollateralWrapper: Bytes!
+    loanStartTime: BigInt!
+    nftCollateralContract: Bytes!
+    revenueSharePartner: Bytes!
+    revenueShareInBasisPoints: Int!
+    referralFeeInBasisPoints: Int!
+    blockNumber: BigInt!
+    blockTimestamp: BigInt!
+    transactionHash: Bytes!
+}

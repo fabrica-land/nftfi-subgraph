@@ -1,0 +1,35 @@
+specVersion: 0.0.5
+description: Fabrica v3 Tokens
+repository: https://github.com/fabrica-land/fabrica-v3-subgraph
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: NftfiDirectLoanFixed
+    network: goerli
+    source:
+      address: "0x77097f421CEb2454eB5F77898d25159ff3C7381d"
+      abi: NftfiDirectLoanFixed
+      startBlock: 7767790
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - LoanLiquidatedEvent
+        - LoanRenegotiatedEvent
+        - LoanRepaidEvent
+        - LoanStartedEvent
+      abis:
+        - name: NftfiDirectLoanFixed
+          file: ./abis/nftfi-direct-loan-fixed.abi.json
+      eventHandlers:
+        - event: LoanLiquidated(indexed uint32,indexed address,indexed address,uint256,uint256,uint256,uint256,address)
+          handler: handleLoanLiquidated
+        - event: LoanRenegotiated(indexed uint32,indexed address,indexed address,uint32,uint256,uint256,uint256)
+          handler: handleLoanRenegotiated
+        - event: LoanRepaid(indexed uint32,indexed address,indexed address,uint256,uint256,uint256,uint256,uint256,address,address,address)
+          handler: handleLoanRepaid
+        - event: LoanStarted(indexed uint32,indexed address,indexed address,(uint256,uint256,uint256,address,uint32,uint16,uint16,address,uint64,address,address),(address,uint16,uint16))
+          handler: handleLoanStarted
+      file: ./src/nftfi-direct-loan-fixed.ts
