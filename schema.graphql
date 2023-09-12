@@ -28,16 +28,17 @@ type Loan @entity(immutable: false) {
     revenueSharePartner: Bytes!
     revenueShareInBasisPoints: Int!
     referralFeeInBasisPoints: Int!
-    loanStartedEvent: LoanStartedEvent! @derivedFrom(field: "loan")
     loanMaturityDate: BigInt
     loanLiquidationDate: BigInt
-    loanLiquidatedEvent: LoanLiquidatedEvent @derivedFrom(field: "loan")
     totalRenegotiationFeesPaid: BigInt!
     totalRenegotiationAdminFeesPaid: BigInt!
-    loanRenegotiatedEvents: [LoanRenegotiatedEvent!] @derivedFrom(field: "loan")
     amountPaidToLender: BigInt
     adminFeePaid: BigInt
     revenueSharePaid: BigInt
+    loanLiquidatedEvent: LoanLiquidatedEvent @derivedFrom(field: "loan")
+    loanRenegotiatedEvents: [LoanRenegotiatedEvent!] @derivedFrom(field: "loan")
+    loanRepaidEvent: LoanRepaidEvent @derivedFrom(field: "loan")
+    loanStartedEvent: LoanStartedEvent! @derivedFrom(field: "loan")
 }
 
 type LoanLiquidatedEvent @entity(immutable: true) {
