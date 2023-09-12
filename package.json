@@ -1,11 +1,7 @@
 {
   "name": "nftfi-subgraph",
+  "version": "0.0.5",
   "license": "MIT",
-  "engines": {
-    "node": "18.17.0",
-    "yarn": "1.22.5"
-  },
-  "engineStrict": true,
   "scripts": {
     "bootstrap": "yarn && del build && del generated && yarn codegen && yarn build",
     "codegen": "graph codegen",
