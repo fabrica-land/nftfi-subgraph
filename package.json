@@ -1,19 +1,14 @@
 {
   "name": "nftfi-subgraph",
   "license": "MIT",
-  "engines": {
-    "node": "18.17.0",
-    "yarn": "1.22.5"
-  },
-  "engineStrict": true,
   "scripts": {
     "bootstrap": "yarn && del build && del generated && yarn codegen && yarn build",
     "codegen": "graph codegen",
     "build": "graph build",
-    "deploy": "graph deploy --node https://api.studio.thegraph.com/deploy/ nftfi-goerli",
-    "create-local": "graph create --node http://localhost:8020/ nftfi-goerli",
-    "remove-local": "graph remove --node http://localhost:8020/ nftfi-goerli",
-    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 nftfi-goerli",
+    "deploy": "graph deploy --node https://api.studio.thegraph.com/deploy/ nftfi",
+    "create-local": "graph create --node http://localhost:8020/ nftfi",
+    "remove-local": "graph remove --node http://localhost:8020/ nftfi",
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 nftfi",
     "test": "graph test"
   },
   "dependencies": {
