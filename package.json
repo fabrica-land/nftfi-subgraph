@@ -1,5 +1,6 @@
 {
   "name": "nftfi-subgraph",
+  "version": "0.0.5",
   "license": "MIT",
   "scripts": {
     "bootstrap": "yarn && del build && del generated && yarn codegen && yarn build",
