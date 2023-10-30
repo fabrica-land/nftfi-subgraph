@@ -110,3 +110,13 @@ type LoanStartedEvent @entity(immutable: true) {
     blockTimestamp: BigInt!
     transactionHash: Bytes!
 }
+
+type ObligationReceipt @entity(immutable: true) {
+    id: Bytes!
+    receiptTokenId: BigInt!
+    loan: Loan!
+    nftCollateralContract: Bytes!
+    nftCollateralId: BigInt!
+    creator: Bytes!
+    holder: Bytes!
+}
