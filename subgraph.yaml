@@ -38,7 +38,7 @@ dataSources:
     name: NftfiObligationReceipt
     network: goerli
     source:
-      address: "0xBDD688e6bc5a8DFe8bBD1256427C882A735ef59d"
+      address: "0xDeE9b6E2f1aa9c14214d87d2911f3550ef1A87bB"
       abi: NftfiObligationReceipt
       startBlock: 9337978
     mapping:
