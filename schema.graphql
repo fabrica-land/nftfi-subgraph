@@ -111,7 +111,7 @@ type LoanStartedEvent @entity(immutable: true) {
     transactionHash: Bytes!
 }
 
-type ObligationReceipt @entity(immutable: true) {
+type ObligationReceipt @entity(immutable: false) {
     id: Bytes!
     receiptTokenId: BigInt!
     loan: Loan!
