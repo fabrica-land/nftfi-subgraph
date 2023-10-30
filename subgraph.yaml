@@ -50,9 +50,6 @@ dataSources:
       abis:
         - name: NftfiObligationReceipt
           file: ./abis/nftfi-obligation-receipt.abi.json
-      callHandlers:
-        - function: mint(address,uint256,bytes)
-          handler: handleObligationReceiptMint
       eventHandlers:
         - event: Transfer(indexed address,indexed address,indexed uint256)
           handler: handleObligationReceiptTransfer
