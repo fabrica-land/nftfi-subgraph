@@ -27,7 +27,7 @@ export function handleObligationReceiptTransfer(event: ObligationReceiptTransfer
         receipt.loan = loanIdBytes
         receipt.nftCollateralContract = loan.nftCollateralContract
         receipt.nftCollateralId = loan.nftCollateralId
-        receipt.creator = event.transaction.from
+        receipt.creator = event.params.to
         receipt.holder = event.params.to
     } else {
         if (receipt == null) {
